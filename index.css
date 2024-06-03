@@ -1,4 +1,63 @@
-h1
-{
-    color:red
+.header {
+    width: 99%;
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.logo-img {
+    width: 28%;
+}
+
+.nav-items>ul {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    list-style: none;
+}
+
+.nav-items>ul>li {
+    margin-left: 15px;
+}
+
+.search-comp {
+    display: flex;
+    justify-content: center;
+    margin: 2%;
+}
+
+.search-comp>input {
+    margin-left: 1%;
+}
+
+.res-comp {
+    display: flex;
+    flex-wrap: wrap;
+
+
+}
+
+.res-tile {
+
+    background-color: beige;
+    width: 22%;
+    margin: 10px;
+    padding: 10px;
+
+}
+
+.res-tile>h4{
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.res-comp :hover {
+    cursor: pointer;
+    border: 1px solid lightgray;
+
+}
+
+.res-img {
+    width: 100%;
 }
