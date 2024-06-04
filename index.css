@@ -25,10 +25,19 @@
     display: flex;
     justify-content: center;
     margin: 2%;
+    height: 30px;
 }
 
-.search-comp>input {
+
+
+.search-input{
     margin-left: 1%;
+    width: 20%;
+}
+
+.search-lbl
+{
+align-self: center;
 }
 
 .res-comp {
