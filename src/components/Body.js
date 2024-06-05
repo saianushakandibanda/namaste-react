@@ -5,10 +5,8 @@ import { useEffect } from "react";
 
 
 function searchRestaurants(inputRes, restList) {
-    console.log(inputRes, restList,"sddsafdfdsfdsf")
     let filtered = restList.filter(x =>
-        x.info.name.toLowerCase() == inputRes.toLowerCase()
-    );
+        x.info.name.toLowerCase().includes(inputRes.toLowerCase()));
     return filtered;
 }
 
@@ -26,17 +24,16 @@ const Body = () => {
     async function getAllRestaurants() {
         const data = await fetch(
             "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING"
-          );
+        );
         const json = await data.json();
         setResList(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle.restaurants);
         setFilteredRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle.restaurants);
     }
 
-    useEffect(() => {getAllRestaurants()}, [])
-    
-    if(resList.length==0)
-    {
-       return  <Shimmer/>
+    useEffect(() => { getAllRestaurants() }, [])
+
+    if (resList.length == 0) {
+        return <Shimmer />
     }
 
     return (
