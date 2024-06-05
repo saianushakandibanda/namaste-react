@@ -4,7 +4,7 @@ const RestaurantTile = (props) => {
     const { resData } = props;
     return (
         <div className="res-tile">
-            <img className='res-img' src={RES_TILE_URL}/>
+            <img className='res-img' src={RES_TILE_URL +resData.cloudinaryImageId}/>
             <h4>{resData.name}</h4>
             <h4>{resData.cuisines.join(',')}</h4>
             <h4>Rating:{"  "+resData.avgRating}</h4>

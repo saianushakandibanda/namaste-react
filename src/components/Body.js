@@ -1,27 +1,47 @@
 import RestaurantTile from "./RestaurantTile";
-
-import restauranttList from "../utils/mockData";
+import Shimmer from "./Shimmer";
 import { useState } from "react";
+import { useEffect } from "react";
+
+
 
 function searchRestaurants(inputRes, restList) {
-    console.log(restList,"dfdsfdsfd")
-    let filtered = restList.filter(x => 
+    
+    let filtered = restList.filter(x =>
         x.data.name.toLowerCase() == inputRes.toLowerCase()
     );
-   
+
     return filtered;
 
 }
 const Body = () => {
+
+
+    const [resList, setResList] = useState([]);
+    const [searchText, setSearchText] = useState('');
+
 
     function btnOnClick() {
         let filtered = resList.filter(x => Number(x.data.avgRating) > 4);
         setResList(filtered);
     }
 
+    async function getAllRestaurants() {
+        const data = await fetch(
+            "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING"
+          );
+        const json = await data.json();
+        console.log(json,"sdfdsf")
+        setResList(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle.restaurants)
+    }
 
-    const [resList, setResList] = useState(restauranttList);
-    const [searchText, setSearchText] = useState('');
+    useEffect(() => {getAllRestaurants()}, [])
+    
+    if(resList.length==0)
+    {
+       return  <Shimmer/>
+    }
+
     return (
         <div>
             <div className='search-comp'>
@@ -32,10 +52,10 @@ const Body = () => {
                     setResList(data);
                 }}>Search</button>
             </div>
-           
+
             <div className='res-comp'>
                 {
-                    resList.map(x => <RestaurantTile key={x.data.id} resData={x.data} />)
+                    resList.map(x => <RestaurantTile key={x.info.id} resData={x.info} />)
                 }
             </div>
         </div>
