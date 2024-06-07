@@ -41,16 +41,15 @@ align-self: center;
 }
 
 .res-comp {
-    display: flex;
     flex-wrap: wrap;
-
-
+    display: flex;
+    justify-content: space-between;
 }
 
 .res-tile {
 
     background-color: beige;
-    width: 22%;
+   
     margin: 10px;
     padding: 10px;
 
@@ -65,6 +64,11 @@ align-self: center;
     cursor: pointer;
     border: 1px solid lightgray;
 
+}
+
+.link-tile
+{
+    width: 22%;
 }
 
 .res-img {
@@ -85,4 +89,29 @@ align-self: center;
     margin: 14px;
     height: 300px;
     width: 22%;
+}
+
+.menu-container {
+    flex-direction: column;
+    width: 60%;
+    margin-left: 15%;
+    padding: 2%;
+    display: flex;
+}
+
+.list-items
+{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid lightgrey;
+}
+
+.menu-item{
+    align-self: center;
+}
+
+
+
+.menu-img{
+    height: 100px;
 }

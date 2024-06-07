@@ -2,7 +2,7 @@ import RestaurantTile from "./RestaurantTile";
 import Shimmer from "./Shimmer";
 import { useState } from "react";
 import { useEffect } from "react";
-
+import { Link } from "react-router-dom";
 
 function searchRestaurants(inputRes, restList) {
     let filtered = restList.filter(x =>
@@ -49,7 +49,7 @@ const Body = () => {
 
             <div className='res-comp'>
                 {
-                    filteredRestaurant.map(x => <RestaurantTile key={x.info.id} resData={x.info} />)
+                    filteredRestaurant.map(x => <Link class="link-tile" key={x.info.id} to={"resinfo/" + x.info.id}> <RestaurantTile resData={x.info} /></Link>)
                 }
             </div>
         </div>
