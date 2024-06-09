@@ -49,7 +49,7 @@ const Body = () => {
 
             <div className='res-comp'>
                 {
-                    filteredRestaurant.map(x => <Link class="link-tile" key={x.info.id} to={"resinfo/" + x.info.id}> <RestaurantTile resData={x.info} /></Link>)
+                    filteredRestaurant.map(x => <Link className="link-tile" key={x.info.id} to={"resinfo/" + x.info.id}> <RestaurantTile resData={x.info} /></Link>)
                 }
             </div>
         </div>

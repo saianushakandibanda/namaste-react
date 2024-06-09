@@ -12,7 +12,6 @@ const RestaurantInfo = () => {
         let resInfo = await fetch(API_URL + id);
         let json = await resInfo.json();
         setResInfo(json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card.card.itemCards);
-        console.log(json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card.card.itemCards, "sdfsdf")
     }
 
     useEffect(() => {
