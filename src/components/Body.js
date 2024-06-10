@@ -3,6 +3,8 @@ import Shimmer from "./Shimmer";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import useStatusCheck from "../utils/useStatusCheck";
+
 
 function searchRestaurants(inputRes, restList) {
     let filtered = restList.filter(x =>
@@ -15,6 +17,8 @@ const Body = () => {
     const [resList, setResList] = useState([]);
     const [searchText, setSearchText] = useState('');
     const [filteredRestaurant, setFilteredRestaurant] = useState([]);
+
+    const status = useStatusCheck();
 
     function btnOnClick() {
         let filtered = resList.filter(x => Number(x.data.avgRating) > 4);
@@ -36,20 +40,26 @@ const Body = () => {
         return <Shimmer />
     }
 
+    if(!status){
+        return (
+            <h1>No Internet Connection</h1>
+        )
+    }
+
     return (
-        <div>
-            <div className='search-comp'>
-                <span className="search-lbl">Search: </span>
-                <input type="text" className="search-input" value={searchText} onChange={(e) => { setSearchText(e.target.value) }}></input>
-                <button className="search-btn" onClick={() => {
+        <div className="bg-green-50">
+            <div className='flex justify-center h-30'>
+                <span className="my-6">Search: </span>
+                <input type="text" className="border border-gray-700 rounded-md mx-2 w-56 px-2 my-4" value={searchText} onChange={(e) => { setSearchText(e.target.value) }}></input>
+                <button className="bg-amber-100 hover:bg-amber-300 text-black py-2 px-4 rounded my-4" onClick={() => {
                     const data = searchRestaurants(searchText, resList);
                     setFilteredRestaurant(data);
                 }}>Search</button>
             </div>
 
-            <div className='res-comp'>
+            <div className='flex flex-wrap'>
                 {
-                    filteredRestaurant.map(x => <Link className="link-tile" key={x.info.id} to={"resinfo/" + x.info.id}> <RestaurantTile resData={x.info} /></Link>)
+                    filteredRestaurant.map(x => <Link className="m-2" key={x.info.id} to={"resinfo/" + x.info.id}> <RestaurantTile resData={x.info} /></Link>)
                 }
             </div>
         </div>
